@@ -30,9 +30,9 @@ public class TaskController {
         return "redirect:/tasks/";
 	}
 
-	@RequestMapping("/update/{taskId}/{taskName}")
-	public String update(@PathVariable("taskId") Integer taskId, @PathVariable("taskName") String taskName) {
-		taskService.update(taskId, taskName);
+	@RequestMapping("/update/{taskId}/{taskName}/{taskStatus}")
+	public String update(@PathVariable("taskId") Integer taskId, @PathVariable("taskName") String taskName, @PathVariable("taskStatus") String taskStatus) {
+		taskService.update(taskId, taskName, taskStatus);
         return "redirect:/tasks/";
 	}
 

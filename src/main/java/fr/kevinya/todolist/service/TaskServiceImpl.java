@@ -22,10 +22,11 @@ public class TaskServiceImpl implements TaskService {
 	}
 
 	@Transactional
-	public void update(Integer id, String name) {
+	public void update(Integer id, String name, String status) {
 		Task task = find(id);
 		if (task != null) {
 			task.setName(name);
+			task.setStatus(status);
 			taskDao.update(task);
 		}
 	}
