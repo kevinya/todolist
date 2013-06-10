@@ -1,9 +1,9 @@
-package com.example.service;
+package fr.kevinya.todolist.service;
 
 
 import java.util.List;
 
-import com.example.model.Person;
+import fr.kevinya.todolist.model.Person;
 
 public interface PersonService {
     
