@@ -17,17 +17,35 @@ public class TaskServiceImpl implements TaskService {
 
 	@Transactional
 	public void create(String name) {
-		Task task = new Task(name, "en cours");
+		Task task = new Task(name, 0);
 		taskDao.create(task);
 	}
 
+	@Override
+	public void create(Task task) {
+		Task currentTask = new Task(task.getName(), task.getStatus());
+		taskDao.create(currentTask);
+	}
+
 	@Transactional
-	public void update(Integer id, String name, String status) {
+	public void update(Integer id, String name, Integer status) {
 		Task task = find(id);
 		if (task != null) {
 			task.setName(name);
 			task.setStatus(status);
+			task.setVersion(task.getVersion() + 1);
 			taskDao.update(task);
+		}
+	}
+
+	@Transactional
+	public void update(Integer id, Task task) {
+		Task currentTask = find(id);
+		if (currentTask != null) {
+			currentTask.setName(task.getName());
+			currentTask.setStatus(task.getStatus());
+			currentTask.setVersion(currentTask.getVersion() + 1);
+			taskDao.update(currentTask);
 		}
 	}
 
@@ -35,7 +53,9 @@ public class TaskServiceImpl implements TaskService {
 	public void delete(Integer id) {
 		Task task = find(id);
 		if (task != null) {
-			taskDao.delete(task);
+			task.setStatus(2);
+			task.setVersion(task.getVersion() + 1);
+			taskDao.update(task);
 		}
 	}
 
@@ -47,6 +67,11 @@ public class TaskServiceImpl implements TaskService {
 	@Transactional
 	public List<Task> findAll() {
 		return taskDao.findAll();
+	}
+
+	@Transactional
+	public List<Task> findNotDeleted() {
+		return taskDao.findNotDeleted();
 	}
 
 }

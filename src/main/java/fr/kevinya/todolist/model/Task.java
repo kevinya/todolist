@@ -10,16 +10,17 @@ public class Task {
 	@Id
 	@GeneratedValue
     private Integer id;
-	
 	private String name;
-	private String status;
+	private Integer status;
+	private Integer version;
 	
 	public Task() {
 	}
 	
-	public Task(String name, String status) {
+	public Task(String name, Integer status) {
 		this.name = name;
 		this.status = status;
+		this.version = 0;
 	}
 
 	public Integer getId() {
@@ -38,11 +39,20 @@ public class Task {
 		this.name = name;
 	}
 
-	public String getStatus() {
+	public Integer getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(Integer status) {
 		this.status = status;
 	}
+
+	public Integer getVersion() {
+		return version;
+	}
+
+	public void setVersion(Integer version) {
+		this.version = version;
+	}
+	
 }
