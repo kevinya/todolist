@@ -38,12 +38,15 @@ public class TaskDaoImpl implements TaskDao {
 
 	@Transactional
 	public List<Task> findAll() {
-		return em.createQuery("from Task").getResultList();
+		return em.createQuery("from Task", Task.class).getResultList();
 	}
 
 	@Transactional
 	public List<Task> findNotDeleted() {
-		return em.createQuery("from Task where status < 2").getResultList();
+		return em
+				.createQuery("from Task where STATUS < ?1", Task.class)
+				.setParameter(1, 2)
+				.getResultList();
 	}
 
 }

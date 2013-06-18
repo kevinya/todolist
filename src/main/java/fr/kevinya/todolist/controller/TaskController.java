@@ -22,7 +22,7 @@ public class TaskController {
 	
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public @ResponseBody List<Task> index(Map<String, Object> map) {
-		List<Task> taskList = taskService.findAll();
+		List<Task> taskList = taskService.findNotDeleted();
 		return taskList;
 	}
 	
