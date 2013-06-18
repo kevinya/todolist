@@ -44,7 +44,8 @@ public class TaskDaoImpl implements TaskDao {
 	@Transactional
 	public List<Task> findNotDeleted() {
 		return em
-				.createQuery("from Task where status < 2", Task.class)
+				.createQuery("from Task where status < ?1", Task.class)
+				.setParameter(1, 2)
 				.getResultList();
 	}
 
