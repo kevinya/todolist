@@ -16,37 +16,39 @@ public class TaskServiceImpl implements TaskService {
 	TaskDao taskDao;
 
 	@Transactional
-	public void create(String name) {
+	public Task create(String name) {
 		Task task = new Task(name, 0);
-		taskDao.create(task);
+		return create(task);
 	}
 
 	@Override
-	public void create(Task task) {
+	public Task create(Task task) {
 		Task currentTask = new Task(task.getName(), task.getStatus());
-		taskDao.create(currentTask);
+		return taskDao.create(currentTask);
 	}
 
 	@Transactional
-	public void update(Integer id, String name, Integer status) {
+	public Task update(Integer id, String name, Integer status) {
 		Task task = find(id);
 		if (task != null) {
 			task.setName(name);
 			task.setStatus(status);
 			task.setVersion(task.getVersion() + 1);
-			taskDao.update(task);
+			task = taskDao.update(task);
 		}
+		return task;
 	}
 
 	@Transactional
-	public void update(Integer id, Task task) {
+	public Task update(Integer id, Task task) {
 		Task currentTask = find(id);
 		if (currentTask != null) {
 			currentTask.setName(task.getName());
 			currentTask.setStatus(task.getStatus());
-			currentTask.setVersion(currentTask.getVersion() + 1);
-			taskDao.update(currentTask);
+			currentTask.setVersion(task.getVersion());
+			currentTask = taskDao.update(currentTask);
 		}
+		return currentTask;
 	}
 
 	@Transactional

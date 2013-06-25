@@ -17,13 +17,15 @@ public class TaskDaoImpl implements TaskDao {
     EntityManager em;
     
 	@Transactional
-	public void create(Task task) {
+	public Task create(Task task) {
 		em.persist(task);
+		return find(task.getId());
 	}
 
 	@Transactional
-	public void update(Task task) {
+	public Task update(Task task) {
 		em.merge(task);
+		return find(task.getId());
 	}
 
 	@Transactional
