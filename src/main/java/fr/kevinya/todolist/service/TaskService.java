@@ -6,7 +6,7 @@ import fr.kevinya.todolist.model.Task;
 
 public interface TaskService {
 	public Task create(String name);
-	public Task update(Integer id, String name, Integer status);
+	public Task update(Integer id, String name, Integer status, Integer version);
 	public void delete(Integer id);
 	public Task find(Integer id);
 	public List<Task> findAll();

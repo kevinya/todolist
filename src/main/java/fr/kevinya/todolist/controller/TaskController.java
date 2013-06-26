@@ -33,8 +33,8 @@ public class TaskController {
 	}
 
 	@RequestMapping("/update/{taskId}")
-	public @ResponseBody Task update(@PathVariable("taskId") Integer taskId, @RequestParam String name, @RequestParam Integer status) {
-		return taskService.update(taskId, name, status);
+	public @ResponseBody Task update(@PathVariable("taskId") Integer taskId, @RequestParam String name, @RequestParam Integer status, @RequestParam Integer version) {
+		return taskService.update(taskId, name, status, version);
 	}
 
     @RequestMapping("/delete/{taskId}")
