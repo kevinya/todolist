@@ -55,8 +55,7 @@ public class TaskServiceImpl implements TaskService {
 	public void delete(Integer id) {
 		Task task = find(id);
 		if (task != null) {
-			task.setStatus(2);
-			taskDao.update(task);
+			taskDao.delete(task);
 		}
 	}
 
