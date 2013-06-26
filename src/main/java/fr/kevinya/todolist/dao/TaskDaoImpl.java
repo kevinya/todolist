@@ -24,7 +24,8 @@ public class TaskDaoImpl implements TaskDao {
 
 	@Transactional
 	public Task update(Task task) {
-		return em.merge(task);
+		em.merge(task);
+		return find(task.getId());
 	}
 
 	@Transactional
