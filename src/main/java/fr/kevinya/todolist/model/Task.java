@@ -17,10 +17,10 @@ public class Task {
 	public Task() {
 	}
 	
-	public Task(String name, Integer status) {
+	public Task(String name, Integer status, Integer version) {
 		this.name = name;
 		this.status = status;
-		this.version = 0;
+		this.version = version;
 	}
 
 	public Integer getId() {

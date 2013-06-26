@@ -17,13 +17,13 @@ public class TaskServiceImpl implements TaskService {
 
 	@Transactional
 	public Task create(String name) {
-		Task task = new Task(name, 0);
+		Task task = new Task(name, 0, 1);
 		return create(task);
 	}
 
 	@Override
 	public Task create(Task task) {
-		Task currentTask = new Task(task.getName(), task.getStatus());
+		Task currentTask = new Task(task.getName(), task.getStatus(), task.getVersion());
 		return taskDao.create(currentTask);
 	}
 
