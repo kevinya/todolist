@@ -23,7 +23,7 @@ public class TaskServiceImpl implements TaskService {
 
 	@Override
 	public Task create(Task task) {
-		Task currentTask = new Task(task.getName(), task.getStatus(), task.getVersion());
+		Task currentTask = new Task(task.getName(), task.getStatus(), task.getVersion() + 1);
 		return taskDao.create(currentTask);
 	}
 
