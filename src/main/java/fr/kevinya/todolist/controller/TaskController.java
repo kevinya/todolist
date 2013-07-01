@@ -38,8 +38,9 @@ public class TaskController {
 	}
 
     @RequestMapping("/delete/{taskId}")
-    public void delete(@PathVariable("taskId") Integer taskId) {
+    public @ResponseBody String delete(@PathVariable("taskId") Integer taskId) {
     	taskService.delete(taskId);
+    	return "";
     }
 
 	@RequestMapping(value = "", method = RequestMethod.POST)
