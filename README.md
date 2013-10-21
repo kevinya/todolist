@@ -2,7 +2,7 @@
 todolist
 ========
 
-Backoffice d'une todolist
+Backend d'une todolist
 
 ## Running the application locally
 
